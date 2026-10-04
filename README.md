@@ -1,9 +1,13 @@
 # Assignment 3 | Bridge Pattern
 
 Name: Melis Anel
+
 Group: SE-2527 
+
 Topic: B - Notifications  
+
 Repository: https://github.com/anelmelis/asik3sdp 
+
 Base commit: 91709fdf03136419899972ff2305486fbe6adcb2
 
 
