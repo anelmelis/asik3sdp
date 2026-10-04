@@ -1,0 +1,10 @@
+T1 PASS | Reminder + EmailChannel | result=EMAIL: Reminder: Meeting at 10:00
+T2 PASS | Reminder + SmsChannel | result=SMS: Reminder: Meeting at 10:00
+T3 PASS | UrgentAlert + EmailChannel | result=EMAIL: URGENT: Server is down
+T4 PASS | UrgentAlert + SmsChannel | result=SMS: URGENT: Server is down
+T5 PASS | sameObject=true | stateUnchanged=true
+before=EMAIL: Reminder: Submit the assignment | after=SMS: Reminder: Submit the assignment
+T6 PASS | Reminder + PushChannel | result=PUSH: Reminder: Meeting at 10:00
+T7 PASS | UrgentAlert + PushChannel | result=PUSH: URGENT: Server is down
+
+SUMMARY: 7/7 PASS
