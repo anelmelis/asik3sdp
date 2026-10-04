@@ -4,7 +4,9 @@ Name: Melis Anel
 
 Group: SE-2527 
 
-Topic: B - Notifications  
+Topic: B - Notifications 
+
+Commit: bd861d22288c1877924ea63e4691e70025776774
 
 Repository: https://github.com/anelmelis/asik3sdp 
 
