@@ -2,6 +2,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+        int passedTests = 0;
+
         Notification reminderEmail =
                 new Reminder("R1", "Meeting at 10:00", new EmailChannel());
 
@@ -14,36 +16,48 @@ public class Main {
         Notification urgentSms =
                 new UrgentAlert("U1", "Server is down", new SmsChannel());
 
-        runTest(
+
+        if (runTest(
                 "T1",
                 "Reminder + EmailChannel",
                 reminderEmail.execute(),
                 "EMAIL: Reminder: Meeting at 10:00"
-        );
+        )) {
+            passedTests++;
+        }
 
-        runTest(
+
+        if (runTest(
                 "T2",
                 "Reminder + SmsChannel",
                 reminderSms.execute(),
                 "SMS: Reminder: Meeting at 10:00"
-        );
+        )) {
+            passedTests++;
+        }
 
-        runTest(
+
+        if (runTest(
                 "T3",
                 "UrgentAlert + EmailChannel",
                 urgentEmail.execute(),
                 "EMAIL: URGENT: Server is down"
-        );
+        )) {
+            passedTests++;
+        }
 
-        runTest(
+
+        if (runTest(
                 "T4",
                 "UrgentAlert + SmsChannel",
                 urgentSms.execute(),
                 "SMS: URGENT: Server is down"
-        );
+        )) {
+            passedTests++;
+        }
 
 
-        // T5 - change channel on the same object
+
         Notification switchTest =
                 new Reminder("R2", "Submit the assignment", new EmailChannel());
 
@@ -71,10 +85,13 @@ public class Main {
                         && after.equals("SMS: Reminder: Submit the assignment");
 
         if (t5Passed) {
+            passedTests++;
+
             System.out.println(
                     "T5 PASS | sameObject=" + sameObject
                             + " | stateUnchanged=" + stateUnchanged
             );
+
             System.out.println(
                     "before=" + before + " | after=" + after
             );
@@ -83,14 +100,46 @@ public class Main {
                     "T5 FAIL | sameObject=" + sameObject
                             + " | stateUnchanged=" + stateUnchanged
             );
+
             System.out.println(
                     "before=" + before + " | after=" + after
             );
         }
+
+
+        Notification reminderPush =
+                new Reminder("R3", "Meeting at 10:00", new PushChannel());
+
+        Notification urgentPush =
+                new UrgentAlert("U2", "Server is down", new PushChannel());
+
+
+        if (runTest(
+                "T6",
+                "Reminder + PushChannel",
+                reminderPush.execute(),
+                "PUSH: Reminder: Meeting at 10:00"
+        )) {
+            passedTests++;
+        }
+
+
+        if (runTest(
+                "T7",
+                "UrgentAlert + PushChannel",
+                urgentPush.execute(),
+                "PUSH: URGENT: Server is down"
+        )) {
+            passedTests++;
+        }
+
+
+        System.out.println();
+        System.out.println("SUMMARY: " + passedTests + "/7 PASS");
     }
 
 
-    private static void runTest(
+    private static boolean runTest(
             String testName,
             String classes,
             String actual,
@@ -110,5 +159,8 @@ public class Main {
                             + " | expected=" + expected
             );
         }
+
+        return passed;
     }
 }
+
